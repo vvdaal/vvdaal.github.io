@@ -2,5 +2,4 @@ name: Vincent van Daal, IT Guy
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
 paginate: 5
-
 theme: jekyll-theme-dinky
