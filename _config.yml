@@ -1,7 +1,7 @@
 # Site settings
 title: Vincent van Daal
 description: Vincent van Daal is a Linux Engineer and blogs about tech.
-cover: assets/images/radhakrishna.jpg
+cover: assets/images/cover.jpg
 logo: assets/images/logo.png
 favicon: assets/images/favicon.png
 baseurl: "/"
