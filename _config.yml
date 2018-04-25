@@ -4,9 +4,10 @@ description: Vincent van Daal is a Linux Engineer and blogs about tech.
 cover: assets/images/radhakrishna.jpg
 logo: assets/images/logo.png
 favicon: assets/images/favicon.png
-baseurl: "/" # the subpath of your site, e.g. /blog/ or / for root
-url: "https://vincentvandaal.github.io" # the base hostname & protocol for your site
-paginate:	5 # The number of posts to show per page on your homepage
+baseurl: "/"
+url: "https://vincentvandaal.github.io"
+paginate: 5
+remote_theme: samanyougarg/hanuman
 
 # Social
 twitter: vvandaal
