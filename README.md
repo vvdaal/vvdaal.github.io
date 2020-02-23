@@ -1,3 +1,3 @@
-## vincentvandaal.github.io
+## vvdaal.github.io / https://vandaal.io
 
-This is my personal website and collection of things.
+This is my personal website.
