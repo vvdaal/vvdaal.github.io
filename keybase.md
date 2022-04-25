@@ -2,7 +2,7 @@
 
 I hereby claim:
 
-  * I am vincentvandaal on github.
+  * I am vvdaal on github.
   * I am vvandaal (https://keybase.io/vvandaal) on keybase.
   * I have a public key whose fingerprint is 0545 6E9F 1C9A D344 5FEF  5930 BE2A 03FE 5A69 8CC6
 
