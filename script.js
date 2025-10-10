@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailText = document.getElementById('emailText');
     
     // Obfuscated email (reversed)
-    const obfuscatedEmail = 'oi.laadnav@tcatnoctis';
+    const obfuscatedEmail = 'oi.laadnav@tcatnocetis';
     const realEmail = obfuscatedEmail.split('').reverse().join('');
     
     // Set up email link functionality
