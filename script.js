@@ -1,41 +1,28 @@
 // Email obfuscation and interaction handling
 document.addEventListener('DOMContentLoaded', function() {
-    // Email obfuscation
+    // Improved email obfuscation using character codes
     const emailLink = document.getElementById('emailLink');
     const emailText = document.getElementById('emailText');
-    
-    // Obfuscated email (reversed)
-    const obfuscatedEmail = 'oi.laadnav@tcatnocetis';
-    const realEmail = obfuscatedEmail.split('').reverse().join('');
-    
-    // Set up email link functionality
+    // Email: sitecontact@vandaal.io
+    const emailCharCodes = [115,105,116,101,99,111,110,116,97,99,116,64,118,97,110,100,97,97,108,46,105,111];
+    const realEmail = String.fromCharCode(...emailCharCodes);
+
     emailLink.addEventListener('click', function(e) {
         e.preventDefault();
-        
-        // Create mailto link
         const mailtoLink = `mailto:${realEmail}`;
-        
-        // Open email client
         window.location.href = mailtoLink;
-        
-        // Update text to show email was revealed
         emailText.textContent = realEmail;
-        
-        // Add a subtle animation
         emailText.style.transition = 'color 0.3s ease';
         emailText.style.color = '#667eea';
-        
-        // Reset after a moment
         setTimeout(() => {
             emailText.style.color = '';
         }, 2000);
     });
-    
-    // Add hover effect to show email
+
     emailLink.addEventListener('mouseenter', function() {
         emailText.textContent = 'Click to email';
     });
-    
+
     emailLink.addEventListener('mouseleave', function() {
         emailText.textContent = 'Contact';
     });
