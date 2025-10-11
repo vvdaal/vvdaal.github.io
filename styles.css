@@ -197,12 +197,22 @@ body {
 }
 
 .experience-label {
-    font-size: 0.9rem;
-    color: var(--color-text-light);
-    margin-bottom: 15px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin-bottom: 18px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.beyond-work-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+    letter-spacing: -0.5px;
 }
 
 .hobbies-section h3 {
