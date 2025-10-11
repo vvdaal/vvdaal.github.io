@@ -64,4 +64,22 @@ document.addEventListener('DOMContentLoaded', function() {
             content.style.transform = 'translateY(0)';
         }, 100);
     }
+
+    // Scroll-to-top button logic
+    window.addEventListener('scroll', function() {
+        const btn = document.getElementById('scrollToTopBtn');
+        if (!btn) return;
+        if (window.scrollY > 200) {
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+        }
+    });
+
+    const scrollBtn = document.getElementById('scrollToTopBtn');
+    if (scrollBtn) {
+        scrollBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 });

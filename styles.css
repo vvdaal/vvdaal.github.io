@@ -61,10 +61,20 @@ body {
     color: var(--color-text);
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+/* ============================================
+   Main Content Wrapper (Mobile First)
+   ============================================ */
+.main-content-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
     padding: var(--space-md);
+    gap: var(--space-md);
 }
 
 /* ============================================
@@ -79,7 +89,7 @@ body {
     backdrop-filter: blur(10px);
     padding: var(--space-xl);
     text-align: center;
-    animation: fadeIn 1.2s ease-in;
+    margin: 0 auto;
 }
 
 .content {
@@ -89,14 +99,6 @@ body {
     gap: var(--space-lg);
 }
 
-.content > * {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-.content > *:nth-child(2) { animation-delay: 0.1s; }
-.content > *:nth-child(3) { animation-delay: 0.2s; }
-.content > *:nth-child(4) { animation-delay: 0.3s; }
-
 /* ============================================
    Avatar Section
    ============================================ */
@@ -105,14 +107,13 @@ body {
 }
 
 .avatar {
-    width: var(--avatar-size);
-    height: var(--avatar-size);
+    width: var(--avatar-size-mobile);
+    height: var(--avatar-size-mobile);
     border-radius: var(--radius-circle);
     object-fit: cover;
     border: 4px solid rgba(102, 126, 234, 0.2);
     box-shadow: 0 0 30px 0 rgba(102, 126, 234, 0.53);
     transition: transform var(--transition-base), box-shadow var(--transition-base);
-    animation: avatarPop 1.2s var(--transition-bounce);
 }
 
 .avatar:hover {
@@ -311,46 +312,6 @@ body {
 }
 
 /* ============================================
-   Hobbies
-   ============================================ */
-.hobbies {
-    display: flex;
-    justify-content: center;
-    gap: var(--space-lg);
-    flex-wrap: wrap;
-}
-
-.hobby {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    padding: var(--space-xs) 16px;
-    background: rgba(102, 126, 234, var(--opacity-bg-light));
-    border-radius: var(--radius-lg);
-    color: var(--color-text-light);
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: all var(--transition-base);
-}
-
-.hobby:hover {
-    background: rgba(102, 126, 234, var(--opacity-bg-medium));
-    color: var(--color-primary);
-    transform: translateY(-1px);
-}
-
-.hobby i {
-    font-size: 1rem;
-    color: var(--color-primary);
-    transition: transform var(--transition-bounce);
-}
-
-.hobby:hover i {
-    animation: wiggle 0.5s;
-    filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.53));
-}
-
-/* ============================================
    LinkedIn Note
    ============================================ */
 .linkedin-note {
@@ -375,29 +336,25 @@ body {
 }
 
 /* ============================================
-   My IT History Section
+   My IT History Section (Mobile First)
    ============================================ */
 .my-it-history {
-    margin-top: var(--space-lg);
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     padding: var(--space-lg) var(--space-md);
-    background: rgba(102, 126, 234, var(--opacity-bg-light));
+    background: rgba(255, 255, 255, var(--opacity-bg-card));
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    animation: fadeInUp 0.7s ease-out;
+    box-shadow: var(--shadow-xl);
+    backdrop-filter: blur(10px);
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .my-it-history h2 {
     color: var(--color-primary);
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: var(--space-sm);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
     text-align: center;
 }
 
@@ -405,9 +362,12 @@ body {
     color: var(--color-text-light);
     font-size: 1rem;
     line-height: 1.7;
+    margin-bottom: var(--space-md);
+    text-align: left;
+}
+
+.my-it-history p:last-child {
     margin-bottom: 0;
-    text-align: center;
-    max-width: 650px;
 }
 
 /* ============================================
@@ -419,138 +379,140 @@ body {
 }
 
 /* ============================================
-   Animations
+   Scroll to Top Button
    ============================================ */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 100;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-md);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+#scrollToTopBtn.show {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-@keyframes avatarPop {
-    0% {
-        transform: scale(0.7);
-        opacity: 0;
-    }
-    80% {
-        transform: scale(1.1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1);
-    }
+#scrollToTopBtn:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
 }
 
-@keyframes wiggle {
-    0%, 100% { transform: rotate(0deg); }
-    20%, 60% { transform: rotate(-10deg); }
-    40%, 80% { transform: rotate(10deg); }
+#scrollToTopBtn:focus {
+    outline: 2px solid var(--color-primary-dark);
+    outline-offset: 2px;
 }
 
 /* ============================================
-   Responsive Design
+   Footer
    ============================================ */
-@media (max-width: 768px) {
+.site-footer {
+    width: 100%;
+    text-align: center;
+    padding: 24px var(--space-md) 16px;
+    background: rgba(0, 0, 0, 0.15);
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.95rem;
+    letter-spacing: 0.2px;
+    margin-top: 0;
+    position: relative;
+    z-index: 10;
+}
+
+/* ============================================
+   Tablet Styles
+   ============================================ */
+@media (min-width: 768px) {
+    .avatar {
+        width: var(--avatar-size);
+        height: var(--avatar-size);
+    }
+    
     .container {
-        padding: var(--space-lg) var(--space-md);
-        margin: 10px;
+        padding: var(--space-xl) calc(var(--space-xl) * 1.5);
     }
     
-    .contact-links {
-        gap: 15px;
+    .my-it-history {
+        padding: var(--space-xl);
     }
     
-    .contact-link {
-        padding: 10px 16px;
-        font-size: 0.9rem;
-    }
-    
-    .companies {
-        gap: 15px;
-    }
-    
-    .company {
-        min-width: 50px;
-        padding: var(--space-xs);
-    }
-    
-    .company-name {
-        font-size: 0.6rem;
-    }
-    
-    .hobbies {
-        gap: var(--space-md);
-    }
-    
-    .hobby {
-        font-size: 0.8rem;
-        padding: 6px var(--space-sm);
+    .my-it-history p {
+        font-size: 1.05rem;
     }
 }
 
-@media (max-width: 480px) {
-    :root {
-        --avatar-size: var(--avatar-size-mobile);
+/* ============================================
+   Desktop Styles (Side-by-Side Layout)
+   ============================================ */
+@media (min-width: 1000px) {
+    .main-content-wrapper {
+        flex-direction: row;
+        padding: 0;
+        gap: 0;
+        align-items: stretch;
+        min-height: 100vh;
     }
     
     .container {
-        padding: 25px 15px;
-    }
-    
-    .contact-links {
+        flex: 1;
+        max-width: none;
+        width: auto;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        min-height: 100vh;
+        display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: var(--space-sm);
-    }
-    
-    .contact-link {
-        width: 100%;
-        max-width: 200px;
         justify-content: center;
+        padding: var(--space-xl) calc(var(--space-xl) * 2);
     }
     
-    .companies {
-        gap: 10px;
-    }
-    
-    .company {
-        min-width: 45px;
-        padding: 6px;
-    }
-    
-    .company-name {
-        font-size: 0.55rem;
-    }
-    
-    .hobbies {
+    .my-it-history {
+        flex: 0 0 450px;
+        max-width: 450px;
+        min-width: 450px;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: var(--shadow-xl);
+        background: rgba(255, 255, 255, 0.97);
+        min-height: 100vh;
+        display: flex;
         flex-direction: column;
-        gap: var(--space-sm);
+        justify-content: center;
+        padding: var(--space-xl);
     }
     
-    .hobby {
-        font-size: 0.8rem;
-        padding: var(--space-xs) 16px;
+    .my-it-history h2 {
+        font-size: 1.6rem;
+        margin-bottom: var(--space-lg);
     }
     
-    .linkedin-note {
-        font-size: 0.8rem;
-        padding: 10px var(--space-sm);
+    .my-it-history p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+    }
+}
+
+@media (min-width: 1200px) {
+    .my-it-history {
+        flex: 0 0 500px;
+        max-width: 500px;
+        min-width: 500px;
     }
 }
 
@@ -572,4 +534,36 @@ a:focus-visible,
 button:focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
+}
+
+/* ============================================
+   Mobile Specific Adjustments
+   ============================================ */
+@media (max-width: 480px) {
+    .main-content-wrapper {
+        padding: var(--space-sm);
+        gap: var(--space-sm);
+    }
+    
+    .container {
+        padding: var(--space-md);
+    }
+    
+    .my-it-history {
+        padding: var(--space-md);
+    }
+    
+    .contact-links {
+        gap: var(--space-sm);
+    }
+    
+    .contact-link {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 0.9rem;
+    }
+    
+    .site-footer {
+        font-size: 0.85rem;
+        padding: 18px var(--space-sm) 12px;
+    }
 }
