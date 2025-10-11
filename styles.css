@@ -1,5 +1,55 @@
-/* Reset and Base Styles */
-* {
+/* ============================================
+   CSS Custom Properties (Design Tokens)
+   ============================================ */
+:root {
+    /* Colors */
+    --color-primary: #667eea;
+    --color-primary-dark: #5a6fd8;
+    --color-secondary: #764ba2;
+    --color-text: #2c3e50;
+    --color-text-light: #7f8c8d;
+    --color-white: #ffffff;
+    
+    /* Opacity values */
+    --opacity-bg-light: 0.05;
+    --opacity-bg-medium: 0.1;
+    --opacity-bg-card: 0.95;
+    
+    /* Spacing */
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 20px;
+    --space-lg: 30px;
+    --space-xl: 40px;
+    
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-full: 50px;
+    --radius-circle: 50%;
+    
+    /* Transitions */
+    --transition-base: 0.3s ease;
+    --transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    
+    /* Shadows */
+    --shadow-sm: 0 8px 20px rgba(102, 126, 234, 0.3);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
+    
+    /* Avatar sizes */
+    --avatar-size: 150px;
+    --avatar-size-mobile: 120px;
+}
+
+/* ============================================
+   Reset and Base Styles
+   ============================================ */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,85 +58,104 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--color-text);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: var(--space-md);
 }
 
+/* ============================================
+   Layout
+   ============================================ */
 .container {
     width: 100%;
-    max-width: 600px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    background: rgba(255, 255, 255, var(--opacity-bg-card));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
     backdrop-filter: blur(10px);
-    padding: 40px;
+    padding: var(--space-xl);
     text-align: center;
+    animation: fadeIn 1.2s ease-in;
 }
 
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: var(--space-lg);
 }
 
-/* Avatar Section */
+.content > * {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.content > *:nth-child(2) { animation-delay: 0.1s; }
+.content > *:nth-child(3) { animation-delay: 0.2s; }
+.content > *:nth-child(4) { animation-delay: 0.3s; }
+
+/* ============================================
+   Avatar Section
+   ============================================ */
 .avatar-section {
     margin-bottom: 10px;
 }
 
 .avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: var(--radius-circle);
     object-fit: cover;
     border: 4px solid rgba(102, 126, 234, 0.2);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 30px 0 rgba(102, 126, 234, 0.53);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    animation: avatarPop 1.2s var(--transition-bounce);
 }
 
 .avatar:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 60px 10px var(--color-primary);
 }
 
-/* Main Info */
+/* ============================================
+   Main Info
+   ============================================ */
 .main-info {
     text-align: center;
 }
 
 .name {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
     font-weight: 700;
-    color: #2c3e50;
+    color: var(--color-text);
     margin-bottom: 10px;
     letter-spacing: -0.5px;
 }
 
 .title {
-    font-size: 1.3rem;
-    color: #667eea;
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    color: var(--color-primary);
     font-weight: 500;
-    margin-bottom: 8px;
+    margin-bottom: var(--space-xs);
 }
 
 .subtitle {
     font-size: 1rem;
-    color: #7f8c8d;
+    color: var(--color-text-light);
     font-weight: 400;
-    max-width: 400px;
+    max-width: 750px;
     margin: 0 auto;
 }
 
-/* Contact Links */
+/* ============================================
+   Interactive Elements
+   ============================================ */
 .contact-links {
     display: flex;
-    gap: 20px;
+    gap: var(--space-md);
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 10px;
@@ -95,69 +164,62 @@ body {
 .contact-link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
-    background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(102, 126, 234, var(--opacity-bg-medium));
+    color: var(--color-primary);
     text-decoration: none;
-    border-radius: 50px;
+    border-radius: var(--radius-full);
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: all var(--transition-base);
     border: 2px solid transparent;
 }
 
 .contact-link:hover {
-    background: #667eea;
-    color: white;
+    background: var(--color-primary);
+    color: var(--color-white);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: var(--shadow-sm);
 }
 
 .contact-link i {
     font-size: 1.1rem;
 }
 
-/* Experience Section */
-.experience-section {
-    margin-top: 20px;
-    padding-top: 30px;
-    border-top: 1px solid rgba(102, 126, 234, 0.1);
+/* ============================================
+   Sections (Experience & Hobbies)
+   ============================================ */
+.experience-section,
+.hobbies-section {
+    margin-top: var(--space-md);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(102, 126, 234, var(--opacity-bg-medium));
 }
 
 .experience-label {
     font-size: 0.9rem;
-    color: #7f8c8d;
+    color: var(--color-text-light);
     margin-bottom: 15px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
+.hobbies-section h3 {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* ============================================
+   Companies
+   ============================================ */
 .companies {
     display: flex;
-    justify-content: center;
-    gap: 25px;
     flex-wrap: wrap;
-}
-
-.company {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
+    gap: 16px;
     justify-content: center;
-    background: rgba(102, 126, 234, 0.05);
-    border-radius: 12px;
-    color: #7f8c8d;
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-    cursor: default;
-}
-
-.company:hover {
-    background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
-    transform: translateY(-2px);
 }
 
 .company {
@@ -169,106 +231,235 @@ body {
     height: auto;
     padding: 10px;
     min-width: 60px;
+    background: rgba(102, 126, 234, var(--opacity-bg-light));
+    border-radius: var(--radius-md);
+    color: var(--color-text-light);
+    font-size: 1.5rem;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    padding: 8px 18px;
+    border-radius: 12px;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.company:focus, .company:hover {
+    background: #f3f4fa;
+    outline: 2px solid #667eea44;
+}
+
+.company .company-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+}
+
+.company .company-link:focus, .company .company-link:hover {
+    text-decoration: underline;
+}
+
+.company:hover {
+    background: rgba(102, 126, 234, var(--opacity-bg-medium));
+    color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.company i {
+    transition: transform var(--transition-bounce);
+}
+
+.company:hover i {
+    transform: scale(1.3) rotate(-10deg);
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.53));
 }
 
 .company-name {
     font-size: 0.7rem;
     font-weight: 500;
-    color: #7f8c8d;
+    color: var(--color-text-light);
     text-align: center;
     line-height: 1.2;
 }
 
 .current-company {
-    color: #667eea;
+    color: var(--color-primary);
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease;
+    transition: color var(--transition-base);
 }
 
 .current-company:hover {
-    color: #5a6fd8;
+    color: var(--color-primary-dark);
     text-decoration: underline;
 }
 
-.linkedin-note {
-    margin-top: 20px;
-    font-size: 0.9rem;
-    color: #5a6fd8;
-    background: rgba(102, 126, 234, 0.05);
-    padding: 12px 16px;
-    border-radius: 8px;
-    border-left: 3px solid #667eea;
-}
-
-.linkedin-note a {
-    color: #667eea;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.linkedin-note a:hover {
-    text-decoration: underline;
-}
-
-/* Hobbies Section */
-.hobbies-section {
-    margin-top: 30px;
-    padding-top: 30px;
-    border-top: 1px solid rgba(102, 126, 234, 0.1);
-}
-
-.hobbies-section h3 {
-    font-size: 1.1rem;
-    color: #2c3e50;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
+/* ============================================
+   Hobbies
+   ============================================ */
 .hobbies {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: var(--space-lg);
     flex-wrap: wrap;
 }
 
 .hobby {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background: rgba(102, 126, 234, 0.05);
-    border-radius: 20px;
-    color: #7f8c8d;
+    gap: var(--space-xs);
+    padding: var(--space-xs) 16px;
+    background: rgba(102, 126, 234, var(--opacity-bg-light));
+    border-radius: var(--radius-lg);
+    color: var(--color-text-light);
     font-size: 0.9rem;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: all var(--transition-base);
 }
 
 .hobby:hover {
-    background: rgba(102, 126, 234, 0.1);
-    color: #667eea;
+    background: rgba(102, 126, 234, var(--opacity-bg-medium));
+    color: var(--color-primary);
     transform: translateY(-1px);
 }
 
 .hobby i {
     font-size: 1rem;
-    color: #667eea;
+    color: var(--color-primary);
+    transition: transform var(--transition-bounce);
 }
 
-/* Responsive Design */
+.hobby:hover i {
+    animation: wiggle 0.5s;
+    filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.53));
+}
+
+/* ============================================
+   LinkedIn Note
+   ============================================ */
+.linkedin-note {
+    margin-top: var(--space-md);
+    font-size: 0.9rem;
+    color: var(--color-primary-dark);
+    background: rgba(102, 126, 234, var(--opacity-bg-light));
+    padding: var(--space-sm) 16px;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--color-primary);
+}
+
+.linkedin-note a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-base);
+}
+
+.linkedin-note a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   My IT History Section
+   ============================================ */
+.my-it-history {
+    margin-top: var(--space-lg);
+    padding: var(--space-lg) var(--space-md);
+    background: rgba(102, 126, 234, var(--opacity-bg-light));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.7s ease-out;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-it-history h2 {
+    color: var(--color-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    text-align: center;
+}
+
+.my-it-history p {
+    color: var(--color-text-light);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+    text-align: center;
+    max-width: 650px;
+}
+
+/* ============================================
+   Email Obfuscation
+   ============================================ */
+.email-link .email-obfuscated {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes avatarPop {
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    20%, 60% { transform: rotate(-10deg); }
+    40%, 80% { transform: rotate(10deg); }
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
 @media (max-width: 768px) {
     .container {
-        padding: 30px 20px;
+        padding: var(--space-lg) var(--space-md);
         margin: 10px;
-    }
-    
-    .name {
-        font-size: 2rem;
-    }
-    
-    .title {
-        font-size: 1.1rem;
     }
     
     .contact-links {
@@ -286,7 +477,7 @@ body {
     
     .company {
         min-width: 50px;
-        padding: 8px;
+        padding: var(--space-xs);
     }
     
     .company-name {
@@ -294,33 +485,28 @@ body {
     }
     
     .hobbies {
-        gap: 20px;
+        gap: var(--space-md);
     }
     
     .hobby {
         font-size: 0.8rem;
-        padding: 6px 12px;
+        padding: 6px var(--space-sm);
     }
 }
 
 @media (max-width: 480px) {
+    :root {
+        --avatar-size: var(--avatar-size-mobile);
+    }
+    
     .container {
         padding: 25px 15px;
-    }
-    
-    .avatar {
-        width: 120px;
-        height: 120px;
-    }
-    
-    .name {
-        font-size: 1.8rem;
     }
     
     .contact-links {
         flex-direction: column;
         align-items: center;
-        gap: 12px;
+        gap: var(--space-sm);
     }
     
     .contact-link {
@@ -344,50 +530,36 @@ body {
     
     .hobbies {
         flex-direction: column;
-        gap: 12px;
+        gap: var(--space-sm);
     }
     
     .hobby {
         font-size: 0.8rem;
-        padding: 8px 16px;
+        padding: var(--space-xs) 16px;
     }
     
     .linkedin-note {
         font-size: 0.8rem;
-        padding: 10px 12px;
+        padding: 10px var(--space-sm);
     }
 }
 
-/* Email obfuscation styles */
-.email-link .email-obfuscated {
-    unicode-bidi: bidi-override;
-    direction: rtl;
-}
-
-/* Smooth animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+/* ============================================
+   Accessibility
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
 
-.content > * {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-.content > *:nth-child(2) {
-    animation-delay: 0.1s;
-}
-
-.content > *:nth-child(3) {
-    animation-delay: 0.2s;
-}
-
-.content > *:nth-child(4) {
-    animation-delay: 0.3s;
+/* Focus styles for keyboard navigation */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
