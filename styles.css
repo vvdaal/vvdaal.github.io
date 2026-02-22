@@ -1,0 +1,569 @@
+/* ============================================
+   CSS Custom Properties (Design Tokens)
+   ============================================ */
+:root {
+    /* Colors */
+    --color-primary: #667eea;
+    --color-primary-dark: #5a6fd8;
+    --color-secondary: #764ba2;
+    --color-text: #2c3e50;
+    --color-text-light: #7f8c8d;
+    --color-white: #ffffff;
+    
+    /* Opacity values */
+    --opacity-bg-light: 0.05;
+    --opacity-bg-medium: 0.1;
+    --opacity-bg-card: 0.95;
+    
+    /* Spacing */
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 20px;
+    --space-lg: 30px;
+    --space-xl: 40px;
+    
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-full: 50px;
+    --radius-circle: 50%;
+    
+    /* Transitions */
+    --transition-base: 0.3s ease;
+    --transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    
+    /* Shadows */
+    --shadow-sm: 0 8px 20px rgba(102, 126, 234, 0.3);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
+    
+    /* Avatar sizes */
+    --avatar-size: 150px;
+    --avatar-size-mobile: 120px;
+}
+
+/* ============================================
+   Reset and Base Styles
+   ============================================ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+/* ============================================
+   Main Content Wrapper (Mobile First)
+   ============================================ */
+.main-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    padding: var(--space-md);
+    gap: var(--space-md);
+}
+
+/* ============================================
+   Layout
+   ============================================ */
+.container {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, var(--opacity-bg-card));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    backdrop-filter: blur(10px);
+    padding: var(--space-xl);
+    text-align: center;
+    margin: 0 auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+/* ============================================
+   Avatar Section
+   ============================================ */
+.avatar-section {
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: var(--avatar-size-mobile);
+    height: var(--avatar-size-mobile);
+    border-radius: var(--radius-circle);
+    object-fit: cover;
+    border: 4px solid rgba(102, 126, 234, 0.2);
+    box-shadow: 0 0 30px 0 rgba(102, 126, 234, 0.53);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.avatar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 60px 10px var(--color-primary);
+}
+
+/* ============================================
+   Main Info
+   ============================================ */
+.main-info {
+    text-align: center;
+}
+
+.name {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.title {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    color: var(--color-primary);
+    font-weight: 500;
+    margin-bottom: var(--space-xs);
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    font-weight: 400;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   Interactive Elements
+   ============================================ */
+.contact-links {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(102, 126, 234, var(--opacity-bg-medium));
+    color: var(--color-primary);
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    font-weight: 500;
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
+}
+
+.contact-link:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.contact-link i {
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   Sections (Experience & Hobbies)
+   ============================================ */
+.experience-section,
+.hobbies-section {
+    margin-top: var(--space-md);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(102, 126, 234, var(--opacity-bg-medium));
+}
+
+.experience-label {
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin-bottom: 18px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.beyond-work-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+.hobbies-section h3 {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* ============================================
+   Companies
+   ============================================ */
+.companies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.company {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    min-width: 60px;
+    background: rgba(102, 126, 234, var(--opacity-bg-light));
+    border-radius: var(--radius-md);
+    color: var(--color-text-light);
+    font-size: 1.5rem;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    padding: 8px 18px;
+    border-radius: 12px;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.company:focus, .company:hover {
+    background: #f3f4fa;
+    outline: 2px solid #667eea44;
+}
+
+.company .company-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+}
+
+.company .company-link:focus, .company .company-link:hover {
+    text-decoration: underline;
+}
+
+.company:hover {
+    background: rgba(102, 126, 234, var(--opacity-bg-medium));
+    color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.company i {
+    transition: transform var(--transition-bounce);
+}
+
+.company:hover i {
+    transform: scale(1.3) rotate(-10deg);
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.53));
+}
+
+.company-name {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+    text-align: center;
+    line-height: 1.2;
+}
+
+.current-company {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-base);
+}
+
+.current-company:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+
+/* ============================================
+   LinkedIn Note
+   ============================================ */
+.linkedin-note {
+    margin-top: var(--space-md);
+    font-size: 0.9rem;
+    color: var(--color-primary-dark);
+    background: rgba(102, 126, 234, var(--opacity-bg-light));
+    padding: var(--space-sm) 16px;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--color-primary);
+}
+
+.linkedin-note a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-base);
+}
+
+.linkedin-note a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   My IT History Section (Mobile First)
+   ============================================ */
+.my-it-history {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md);
+    background: rgba(255, 255, 255, var(--opacity-bg-card));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.my-it-history h2 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+
+.my-it-history p {
+    color: var(--color-text-light);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+    text-align: left;
+}
+
+.my-it-history p:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   Email Obfuscation
+   ============================================ */
+.email-link .email-obfuscated {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+/* ============================================
+   Scroll to Top Button
+   ============================================ */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 100;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-md);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+#scrollToTopBtn.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#scrollToTopBtn:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+}
+
+#scrollToTopBtn:focus {
+    outline: 2px solid var(--color-primary-dark);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.site-footer {
+    width: 100%;
+    text-align: center;
+    padding: 24px var(--space-md) 16px;
+    background: rgba(0, 0, 0, 0.15);
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 0.95rem;
+    letter-spacing: 0.2px;
+    margin-top: 0;
+    position: relative;
+    z-index: 10;
+}
+
+/* ============================================
+   Tablet Styles
+   ============================================ */
+@media (min-width: 768px) {
+    .avatar {
+        width: var(--avatar-size);
+        height: var(--avatar-size);
+    }
+    
+    .container {
+        padding: var(--space-xl) calc(var(--space-xl) * 1.5);
+    }
+    
+    .my-it-history {
+        padding: var(--space-xl);
+    }
+    
+    .my-it-history p {
+        font-size: 1.05rem;
+    }
+}
+
+/* ============================================
+   Desktop Styles (Side-by-Side Layout)
+   ============================================ */
+@media (min-width: 1000px) {
+    .main-content-wrapper {
+        flex-direction: row;
+        padding: 0;
+        gap: 0;
+        align-items: stretch;
+        min-height: 100vh;
+    }
+    
+    .container {
+        flex: 1;
+        max-width: none;
+        width: auto;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: var(--space-xl) calc(var(--space-xl) * 2);
+    }
+    
+    .my-it-history {
+        flex: 0 0 450px;
+        max-width: 450px;
+        min-width: 450px;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: var(--shadow-xl);
+        background: rgba(255, 255, 255, 0.97);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: var(--space-xl);
+    }
+    
+    .my-it-history h2 {
+        font-size: 1.6rem;
+        margin-bottom: var(--space-lg);
+    }
+    
+    .my-it-history p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+    }
+}
+
+@media (min-width: 1200px) {
+    .my-it-history {
+        flex: 0 0 500px;
+        max-width: 500px;
+        min-width: 500px;
+    }
+}
+
+/* ============================================
+   Accessibility
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus styles for keyboard navigation */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   Mobile Specific Adjustments
+   ============================================ */
+@media (max-width: 480px) {
+    .main-content-wrapper {
+        padding: var(--space-sm);
+        gap: var(--space-sm);
+    }
+    
+    .container {
+        padding: var(--space-md);
+    }
+    
+    .my-it-history {
+        padding: var(--space-md);
+    }
+    
+    .contact-links {
+        gap: var(--space-sm);
+    }
+    
+    .contact-link {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: 0.9rem;
+    }
+    
+    .site-footer {
+        font-size: 0.85rem;
+        padding: 18px var(--space-sm) 12px;
+    }
+}
