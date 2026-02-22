@@ -1,3 +1,3 @@
 ## vvdaal.github.io / https://vandaal.io
 
-This is my personal website.
+This is my professional / CV website.
